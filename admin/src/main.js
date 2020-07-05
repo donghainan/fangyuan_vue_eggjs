@@ -1,4 +1,3 @@
-
 // import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
@@ -75,14 +74,14 @@ import router from './router';
 import './assets/css/common.less'
 import Filter from './utils/filters';
 import Global from './utils/global';
-// import moment from 'moment'
 import store from './store/index.js';
 import Http from './api/api'
+import mixins from '@/mixin'
 
 
 Vue.config.productionTip = false
 
-// Vue.use(ElementUI)
+Vue.mixin(mixins)
 Vue.use(Global)
 Vue.use(Filter)
 

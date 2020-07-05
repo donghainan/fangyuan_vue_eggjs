@@ -1,9 +1,6 @@
-// import axios from 'axios'
-// import {
-//     Message
-// } from 'element-ui'
 import router from '../router'
 const Message = ELEMENT.Message
+
 
 axios.defaults.timeout = 15000
 axios.defaults.withCredentials = true
@@ -32,8 +29,7 @@ axios.interceptors.response.use(
     if (response.data.code === 0 || response.data.code === 200) {
       return response
     } else {
-        console.log(response.data.code)
-      if (response.data.code === 2001) {
+      if (response.data.code === 2001||response.data.code === 1001) {
         localStorage.removeItem('auth_token') //过期
         localStorage.removeItem('userName') //过期
         localStorage.removeItem('Accesslevel') //过期
@@ -42,11 +38,11 @@ axios.interceptors.response.use(
         router.push('login')
         return Promise.reject(response.data)
       } else if (response.data.code === 2002) {
-        // 登录过期
+        // 用户名已经存在
         Message.error(response.data.msg || '用户名已经存在')
         return Promise.reject(response.data)
       } else if (response.data.code === 2004) {
-        // 登录过期
+        // 密码错误
         Message.error(response.data.msg || '用户名或者密码错误')
         return Promise.reject(response.data)
       } else {
@@ -56,8 +52,6 @@ axios.interceptors.response.use(
     }
   },
   (error) => {
-    const Message = ELEMENTUI.Message
-
     Message.error('系统异常！请稍后再试')
     if (error.response && error.response.data) {
       return Promise.reject(error.response.data) // 返回接口返回的错误信息

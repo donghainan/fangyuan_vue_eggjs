@@ -306,7 +306,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="less">
 .hx-grid {
   /* max-width: ; */
   min-height: 230px;

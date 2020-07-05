@@ -3,27 +3,38 @@
 import login from './views/login.vue'
 // Vue.use(Router)
 const router = new VueRouter({
-  routes: [
-    {
+  routes: [{
       path: '/',
       name: 'login',
       component: login
-    },{
+    }, {
       path: '/login',
       name: 'login',
       component: login
     },
     {
       path: '/home',
-      component: ()=>import('@/views/home'),
+      component: () => import('@/views/home'),
       children: [{
         path: '/index',
         name: 'index',
-        component:  ()=>import('@/views/index')
-      },{
+        component: () => import('@/views/index')
+      }, {
         path: '/account',
         name: 'account',
-        component: ()=>import('@/views/account')
+        component: () => import('@/views/account')
+      }, {
+        path: '/tenants',
+        name: 'tenants',
+        component: () => import('@/views/tenants')
+      }, {
+        path: '/smallsequence',
+        name: 'smallsequence',
+        component: () => import('@/views/smallsequence')
+      }, {
+        path: '/edithoust',
+        name: 'edithoust',
+        component: () => import('@/views/edithoust')
       }, ]
     }
   ]

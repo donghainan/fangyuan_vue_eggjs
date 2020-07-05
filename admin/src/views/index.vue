@@ -3,75 +3,78 @@
     <!-- 搜索 -->
     <el-card class="box-card">
       <el-form class="searchForm" :model="searchForm" label-width="80px" size="small">
-        <el-col :span="spanSize">
-          <el-form-item label="房源状态 :">
-            <el-select v-model="searchForm.status" placeholder="请选择房源状态" clearable>
-              <el-option
-                :label="item.label"
-                :value="item.value"
-                v-for="item in status"
-                :key="item.value"
-              ></el-option>
-            </el-select>
-          </el-form-item>
-        </el-col>
-        <el-col :span="spanSize">
-          <el-form-item label="房源位置 :">
-            <el-select v-model="searchForm.location" placeholder="请选择房源位置" clearable>
-              <el-option
-                :label="item.label"
-                :value="item.value"
-                v-for="item in regions"
-                :key="item.value"
-              ></el-option>
-            </el-select>
-          </el-form-item>
-        </el-col>
-
-        <el-col :span="spanSize">
-          <el-form-item label="栋号 :">
-            <el-input v-model="searchForm.floor" placeholder="请输入栋号" clearable></el-input>
-          </el-form-item>
-        </el-col>
-        <el-col :span="spanSize">
-          <el-form-item label="房号 :">
-            <el-input v-model="searchForm.roomNum" placeholder="请输入房号" clearable></el-input>
-          </el-form-item>
-        </el-col>
-        <el-col :span="spanSize">
-          <el-form-item label="装修">
-            <el-select v-model="searchForm.renovation" placeholder="请选择房源位置" clearable>
-              <el-option value="毛坯"></el-option>
-              <el-option value="简装"></el-option>
-              <el-option value="精装"></el-option>
-            </el-select>
-          </el-form-item>
-        </el-col>
-        <el-col :span="spanSize">
-          <el-form-item label="租价(元) :">
-            <el-input v-model="searchForm.rental" placeholder="请输入房源租价" clearable></el-input>
-          </el-form-item>
-        </el-col>
-        <el-col :span="spanSize">
-          <el-form-item label="售价(万) :">
-            <el-input v-model="searchForm.price" placeholder="请输入房源售价" clearable></el-input>
-          </el-form-item>
-        </el-col>
-        <el-col :span="spanSize">
-          <el-form-item label="电话 :">
-            <el-input v-model="searchForm.owner" placeholder="请输入电话" clearable></el-input>
-          </el-form-item>
-        </el-col>
-        <el-col :span="spanSize">
-          <el-form-item label="关键字 :">
-            <el-input v-model="searchForm.followInfo" placeholder="请输入跟进关键字" clearable></el-input>
-          </el-form-item>
-        </el-col>
+        <el-row :gutter="10">
+          <el-col :span="spanSize">
+            <el-form-item label="房源状态 :">
+              <el-select v-model="searchForm.status" placeholder="请选择房源状态" clearable>
+                <el-option
+                  :label="item.label"
+                  :value="item.value"
+                  v-for="item in status"
+                  :key="item.value"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="spanSize">
+            <el-form-item label="房源位置 :">
+              <el-select v-model="searchForm.location" placeholder="请选择房源位置" clearable>
+                <el-option
+                  :label="item.label"
+                  :value="item.value"
+                  v-for="item in regions"
+                  :key="item.value"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="spanSize">
+            <el-form-item label="栋号 :">
+              <el-input v-model="searchForm.floor" placeholder="请输入栋号" clearable></el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="spanSize">
+            <el-form-item label="房号 :">
+              <el-input v-model="searchForm.roomNum" placeholder="请输入房号" clearable></el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="spanSize">
+            <el-form-item label="装修">
+              <el-select v-model="searchForm.renovation" placeholder="请选择装修类型" clearable>
+                <el-option value="毛坯"></el-option>
+                <el-option value="简装"></el-option>
+                <el-option value="精装"></el-option>
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="spanSize">
+            <el-form-item label="租价(元) :">
+              <el-input v-model="searchForm.rental" placeholder="请输入房源租价" clearable></el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="spanSize">
+            <el-form-item label="售价(万) :">
+              <el-input v-model="searchForm.price" placeholder="请输入房源售价" clearable></el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="spanSize">
+            <el-form-item label="电话 :">
+              <el-input v-model="searchForm.owner" placeholder="请输入电话" clearable></el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="spanSize">
+            <el-form-item label="关键字 :">
+              <el-input v-model="searchForm.followInfo" placeholder="请输入跟进关键字" clearable></el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="6">
+            <el-form-item>
+              <el-button type="primary" size="small" @click="searchList">搜索</el-button>
+              <el-button size="small" @click="reset">重置</el-button>
+            </el-form-item>
+          </el-col>
+        </el-row>
       </el-form>
-      <el-row class="search_btn">
-        <el-button type="primary" size="small" @click="searchList">搜索</el-button>
-        <el-button size="small" @click="reset">重置</el-button>
-      </el-row>
     </el-card>
     <el-card class="box-card">
       <div class="add">
@@ -157,10 +160,10 @@
       </div>
     </el-card>
     <!-- 图片预览模态框 -->
-    <el-dialog :visible.sync="previewDialogVisible" width="90%"  custom-class="previewDialog">
-      <el-carousel indicator-position="none" height="800px" >
-        <el-carousel-item v-for="item in previewImgList" :key="item" >
-          <el-image :src="item" fit="cover" ></el-image>
+    <el-dialog :visible.sync="previewDialogVisible" width="90%" custom-class="previewDialog">
+      <el-carousel indicator-position="none" height="800px">
+        <el-carousel-item v-for="item in previewImgList" :key="item">
+          <el-image :src="item" fit="cover"></el-image>
         </el-carousel-item>
       </el-carousel>
       <span slot="footer" class="dialog-footer">
@@ -391,21 +394,6 @@ export default {
         page: 1,
         size: 50
       },
-      regions: [
-        { label: "爱博一村", value: "爱博一村" },
-        { label: "爱博二村", value: "爱博二村" },
-        { label: "爱博三村", value: "爱博三村" },
-        { label: "爱博四村", value: "爱博四村" },
-        { label: "爱博五村", value: "爱博五村" },
-        { label: "爱博六村", value: "爱博六村" },
-        { label: "爱博七村", value: "爱博七村" },
-        { label: "其他", value: "其他" }
-      ],
-      status: [
-        { label: "可租", value: "1" },
-        { label: "暂缓", value: "2" },
-        { label: "已租", value: "3" }
-      ],
       list: [],
       total: 0,
       // 添加房源
@@ -457,14 +445,14 @@ export default {
       },
       dialogImageUrl: "",
       dialogVisible: false,
-      previewDialogVisible: false ,// 图片预览
-      previewImgList:[],
+      previewDialogVisible: false, // 图片预览
+      previewImgList: []
     };
   },
-  created() {
-    this.getList();
-  },
   methods: {
+    init() {
+      this.getList();
+    },
     getList() {
       let parame = this.searchForm;
       Http.getList(parame).then(res => {
@@ -494,11 +482,6 @@ export default {
     indexMethod(index) {
       return (this.searchForm.page - 1) * this.searchForm.size + index + 1;
     },
-    // 搜索
-    searchList() {
-      this.searchForm.page = 1;
-      this.getList();
-    },
     // 重置
     reset() {
       this.searchForm = {
@@ -514,16 +497,6 @@ export default {
         page: 1,
         size: 50
       };
-    },
-    // 分页大小变化
-    handleSizeChange(size) {
-      this.searchForm.size = size;
-      this.getList();
-    },
-    // 当前页面变化
-    handleCurrentChange(page) {
-      this.searchForm.page = page;
-      this.getList();
     },
     // 新增
     add() {
@@ -648,7 +621,7 @@ export default {
     },
     // 图片预览
     preview(row) {
-      this.previewImgList = row.imgUrl || []
+      this.previewImgList = row.imgUrl || [];
       this.previewDialogVisible = true;
     },
     resetForm() {
@@ -689,17 +662,14 @@ export default {
 .searchForm {
   overflow: hidden;
 }
-
 </style>
 <style lang="less">
-  // 轮播
-.el-carousel{
+// 轮播
+.el-carousel {
   height: 90%;
   text-align: center;
-  img{
+  img {
     max-height: 800px;
   }
-  
 }
-
 </style>

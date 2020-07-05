@@ -60,10 +60,11 @@ export default {
             .then(res => {
               this.loading = false;
               if (res.data && res.data.code == 0) {
-                let { auth_token, type } = res.data.data;
+                let { auth_token, type ,id} = res.data.data;
                 localStorage.setItem("auth_token", auth_token);
                 localStorage.setItem("Accesslevel", type);
                 localStorage.setItem("userName", this.loginFrom.username);
+                localStorage.setItem("userId", id);
                 this.$message.success("登录成功 !");
                 this.$router.push("/index");
               } else {

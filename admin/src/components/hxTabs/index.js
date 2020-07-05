@@ -5,7 +5,7 @@
  * @LastEditTime : 2020-02-03 17:17:35
  * @Description: hxtabs
  */
-import './style/index.scss'
+import './style/index.less'
 export default {
   name: 'HxTabs',
   props: {

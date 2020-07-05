@@ -9,9 +9,7 @@
       <span @click="loginOut">{{ userName }}</span>
     </el-header>
     <el-container>
-      <el-aside
-        :width="isCollapse ? '0px' : '200px'"
-      >
+      <el-aside :width="isCollapse ? '0px' : '200px'">
         <el-menu
           default-active="1"
           :router="true"
@@ -20,11 +18,7 @@
           active-text-color="#ffd04b"
           :collapse="isCollapse"
         >
-          <el-menu-item
-            v-for="item in route"
-            :key="item.path"
-            :index="item.path"
-          >
+          <el-menu-item v-for="item in route" :key="item.path" :index="item.path">
             <i class="el-icon-location"></i>
             <span>{{ item.label }}</span>
           </el-menu-item>
@@ -38,64 +32,64 @@
 </template>
 
 <script>
-import Http from '@/api/api'
+import Http from "@/api/api";
 export default {
   data() {
     return {
-      userName: 'admin',
+      userName: "admin",
+      // 用户等级
+      Accesslevel: localStorage.getItem("Accesslevel"),
       isCollapse: true,
       route: [
-        { path: '/index', label: '房源信息', Accesslevel: '1' },
-        { path: '/account', label: '账号管理', Accesslevel: '0' },
-      ],
-    }
+        { path: "/index", label: "房源信息", Accesslevel: "1" },
+        { path: "/account", label: "账号管理", Accesslevel: "0" },
+        { path: "/tenants", label: "租客管理", Accesslevel: "2" },
+        { path: "/smallsequence", label: "小程序房源", Accesslevel: "0" }
+      ]
+    };
   },
   created() {
-    this.userName = localStorage.getItem('userName')
-    // if (localStorage.getItem("Accesslevel") !== "0") {
-    //   this.route = this.route.filter(v => {
-    //     return v.path === "/index";
-    //   });
-    // }
+    // 三级用户仅能看到三级用户模块
+    if (this.Accesslevel && this.Accesslevel === "2") {
+      this.route = this.route.filter(v => v.Accesslevel === this.Accesslevel);
+      // 默认路由导航到第一个三级权限路由
+     let path =  this.route.find(v=>v.Accesslevel === '2').path || '/login'
+      this.$router.push(path)
+    }
+    this.userName = localStorage.getItem("userName");
   },
   methods: {
-    handleOpen(key, keyPath) {
-      // console.log(key, keyPath);
-    },
-    handleClose(key, keyPath) {
-      // console.log(key, keyPath);
-    },
     loginOut() {
-      this.$confirm('即将退出登录, 是否继续?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning',
+      this.$confirm("即将退出登录, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
       })
         .then(() => {
-          Http.loginout().then((res) => {
+          Http.loginout().then(res => {
             if (res.data.code == 0) {
-              localStorage.removeItem('auth_token')
-              localStorage.removeItem('Accesslevel')
-              localStorage.removeItem('userName')
-              this.$router.push('/login')
+              localStorage.removeItem("auth_token");
+              localStorage.removeItem("Accesslevel");
+              localStorage.removeItem("userName");
+              this.$router.push("/login");
               this.$message({
-                type: 'success',
-                message: '登出成功!',
-              })
+                type: "success",
+                message: "登出成功!"
+              });
             } else {
-              this.$message.error('网络错误,请稍后再试')
+              this.$message.error("网络错误,请稍后再试");
             }
-          })
+          });
         })
         .catch(() => {
           this.$message({
-            type: 'info',
-            message: '已取消退出',
-          })
-        })
-    },
-  },
-}
+            type: "info",
+            message: "已取消退出"
+          });
+        });
+    }
+  }
+};
 </script>
 <style lang="less" scoped>
 .el-container {
@@ -112,8 +106,6 @@ export default {
       width: 60px;
       height: 60px;
       float: left;
-      // background: url("../assets/css/img/u=1720133037,3770922886&fm=26&gp=0.jpg")
-      //   no-repeat left center;
       background-size: 60px;
     }
     i {
