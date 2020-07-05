@@ -31,7 +31,7 @@ module.exports = (appInfo) => {
     // myAppName: 'egg',
     urls: {
       stuer_url: 'http://127.0.0.1:7001',
-      // stuer_url: 'http://wwww.yanhao.love:7001',
+      // stuer_url: 'http://www.yanhao.love:7001',
     },
     // 设置登录token为一周
     loginTokenTime: 7 * 24 * 60 * 60,

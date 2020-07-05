@@ -10,6 +10,7 @@ module.exports = (app) => {
       password: { type: STRING, comment: '登录密码' },
       type: { type: INTEGER, comment: '账号类型' },
       delFlag: { type: INTEGER, comment: '账号删除状态 0未冻结 1已冻结' },
+      phone: { type: STRING, comment: '手机号' },
       createdAt: {
         type: DATE,
         get() {

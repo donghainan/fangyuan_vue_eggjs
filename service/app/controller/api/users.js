@@ -22,6 +22,10 @@ const rule = {
     type: "number",
     required: false,
   },
+  phone: {
+    type: "string",
+    required: false,
+  },
 };
 class Users extends Controller {
   async login() {
@@ -30,10 +34,11 @@ class Users extends Controller {
       {
         username: rule.username,
         password: rule.password,
+        phone: rule.phone
       },
       ctx.request.body
     );
-    const { username, password } = ctx.request.body;
+    const { username, password, phone } = ctx.request.body;
     const pwdHash = ctx.helper.cryptPwd(password);
     const userInstance = await ctx.service.users.findOne(username);
     if (!userInstance) {
@@ -60,6 +65,7 @@ class Users extends Controller {
         expires: this.config.loginTokenTime,
         type: userInstance.type,
         id: userInstance.id,
+        phone: userInstance.phone
       });
     } else {
       // 登录失败
@@ -84,6 +90,7 @@ class Users extends Controller {
         username: rule.username,
         password: rule.password,
         type: rule.type,
+        phone: rule.phone
       },
       ctx.request.body
     );
@@ -93,7 +100,7 @@ class Users extends Controller {
       ctx.helper.$fail(INVALID_PARAM.code, INVALID_PARAM.msg);
       return;
     }
-    const { username, password, type } = ctx.request.body;
+    const { username, password, type, phone } = ctx.request.body;
     // 对密码进行hash处理
     const pwdHash = ctx.helper.cryptPwd(password);
     // 调用service层处理数据
@@ -101,12 +108,14 @@ class Users extends Controller {
       username,
       password: pwdHash,
       type,
+      phone,
       delFlag: 0,
     });
     const userInfo = {
       id: userInstance.id,
       username: userInstance.username,
       type: userInstance.type,
+      phone: userInfoInstance.phone,
       delFlag: userInstance.delFlag,
     };
     const userInfoInstance = await ctx.service.users.createOrUpdate(userInfo);
@@ -122,17 +131,17 @@ class Users extends Controller {
         password: rule.password,
         delFlag: rule.delFlag,
         type: rule.type,
+        phone: rule.phone
       },
       ctx.request.body
     );
-    const { username, password, delFlag, type } = ctx.request.body;
+    const { username, password, delFlag, type, phone } = ctx.request.body;
     // 对密码进行hash处理
     let pwdHash;
     if (password) {
       pwdHash = ctx.helper.cryptPwd(password);
     }
     const userInstance = await ctx.service.users.findOne(username);
-    console.log(userInstance);
     if (!userInstance) {
       const { USER_NOT_FOUND } = this.config.errors;
       ctx.helper.$fail(USER_NOT_FOUND.code, USER_NOT_FOUND.msg);
@@ -145,12 +154,14 @@ class Users extends Controller {
         username,
         password: pwdHash,
         type,
+        phone
       };
     } else {
       user = {
         delFlag,
         username,
         type,
+        phone
       };
     }
     await userInstance.update(user);

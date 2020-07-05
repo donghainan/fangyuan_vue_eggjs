@@ -30,14 +30,14 @@ module.exports = (app) => {
       createdAt: {
         type: DATE,
         get() {
-          return dayjs(this.getDataValue('createTime')).valueOf()
+          return dayjs(this.getDataValue('createdAt')).valueOf()
         },
         comment: '房源创建时间',
       },
       updatedAt: {
         type: DATE,
         get() {
-          return dayjs(this.getDataValue('updateTime')).valueOf()
+          return dayjs(this.getDataValue('updatedAt')).valueOf()
         },
         comment: '房源更新时间',
       },

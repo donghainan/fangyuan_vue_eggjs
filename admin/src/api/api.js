@@ -71,6 +71,6 @@ export default {
     upload() {
         // let url = location.origin+'/api/uploadImgs'
         // return env? `http://106.15.238.134:7001/api/uploadImgs`:url
-        return `http://www.jsdong.top:7001/api/uploadImgs`
+        return `http://www.yanhao.love:7001/api/uploadImgs`
     },
 };
