@@ -19,6 +19,8 @@ class HouseService extends Service {
       location: queryParams.location,
       status: queryParams.status,
       renovation: queryParams.renovation,
+      roomNum: queryParams.roomNum,
+      floor: queryParams.floor,
       owner: {
         [Op.like]: `%${queryParams.owner}%`,
       },
