@@ -69,4 +69,26 @@ module.exports = (app) => {
     auth_token_check,
     controller.api.tenant.tenantRent
   );
+  // =================小程序接口start===================
+  router.post(
+    "/api/wxAdd",
+    auth_token_check,
+    controller.api.wxhouse.wxAdd
+  );
+  router.post(
+    "/api/wxUpdate",
+    auth_token_check,
+    controller.api.wxhouse.wxUpdate
+  );
+  router.post(
+    "/api/wxDelete",
+    auth_token_check,
+    controller.api.wxhouse.wxDelete
+  );
+  router.post(
+    "/api/wxList",
+    controller.api.wxhouse.wxList
+  );
+// =================小程序接口end===================
+
 };
