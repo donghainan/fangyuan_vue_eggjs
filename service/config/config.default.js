@@ -1,26 +1,26 @@
 /* eslint valid-jsdoc: "off" */
 
-'use strict'
-const path = require('path')
+'use strict';
+const path = require('path');
 
 /**
  * @param {Egg.EggAppInfo} appInfo app info
  */
-module.exports = (appInfo) => {
+module.exports = appInfo => {
   /**
-   * built-in config
-   * @type {Egg.EggAppConfig}
-   **/
-  const config = (exports = {})
+	 * built-in config
+	 * @type {Egg.EggAppConfig}
+	 **/
+  const config = (exports = {});
 
   // use for cookie sign key, should change to your own and keep security
-  config.keys = appInfo.name + '_1588984849522_1512'
+  config.keys = appInfo.name + '_1588984849522_1512';
 
   // add your middleware config here
-  config.middleware = ['errorHandler']
+  config.middleware = [ 'errorHandler' ];
   config.errorHandler = {
     match: '/api',
-  }
+  };
   // 配置egg安全机制
   // config.security = {
   //   csrf: false,
@@ -58,7 +58,7 @@ module.exports = (appInfo) => {
     // // 配置egg安全机制
     security: {
       csrf: false,
-      domainWhiteList: ['*'],
+      domainWhiteList: [ '*' ],
     },
     // 配置跨域
     cors: {
@@ -134,10 +134,10 @@ module.exports = (appInfo) => {
         msg: '未找到相关房源信息',
       },
     },
-  }
+  };
 
   return {
     ...config,
     ...userConfig,
-  }
-}
+  };
+};

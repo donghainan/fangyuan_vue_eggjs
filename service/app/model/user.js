@@ -1,7 +1,7 @@
-'use strict'
-const dayjs = require('dayjs')
-module.exports = (app) => {
-  const { STRING, INTEGER, DATE } = app.Sequelize
+'use strict';
+const dayjs = require('dayjs');
+module.exports = app => {
+  const { STRING, INTEGER, DATE } = app.Sequelize;
   const User = app.model.define(
     'users',
     {
@@ -14,21 +14,21 @@ module.exports = (app) => {
       createdAt: {
         type: DATE,
         get() {
-          return dayjs(this.getDataValue('createdAt')).valueOf()
+          return dayjs(this.getDataValue('createdAt')).valueOf();
         },
         comment: '账号创建时间',
       },
       updatedAt: {
         type: DATE,
         get() {
-          return dayjs(this.getDataValue('updatedAt')).valueOf()
+          return dayjs(this.getDataValue('updatedAt')).valueOf();
         },
         comment: '账号更新时间',
       },
       deletedAt: {
         type: DATE,
         get() {
-          return dayjs(this.getDataValue('deletedAt')).valueOf()
+          return dayjs(this.getDataValue('deletedAt')).valueOf();
         },
         comment: '账号删除时间',
       },
@@ -37,7 +37,7 @@ module.exports = (app) => {
       paranoid: false,
       underscored: false,
     }
-  )
-  User.sync()
-  return User
-}
+  );
+  User.sync();
+  return User;
+};
