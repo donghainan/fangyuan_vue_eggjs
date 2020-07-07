@@ -87,6 +87,7 @@ module.exports = (app) => {
   );
   router.post(
     "/api/wxList",
+    auth_token_check,
     controller.api.wxhouse.wxList
   );
 // =================小程序接口end===================
