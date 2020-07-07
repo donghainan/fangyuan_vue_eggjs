@@ -133,6 +133,18 @@ module.exports = appInfo => {
         name: 'HOUSE_NOT_FOUND',
         msg: '未找到相关房源信息',
       },
+      WX_HOUSE_FOUND: {
+        // 房源编号已存在
+        code: 2006,
+        name: 'WX_HOUSE_FOUND',
+        msg: '房源编号已存在',
+      },
+      WX_HOUSE_NOTFOUND: {
+        // 房源编号已存在
+        code: 2007,
+        name: 'WX_HOUSE_NOTFOUND',
+        msg: '房源不存在',
+      },
     },
   };
 
