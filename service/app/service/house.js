@@ -76,8 +76,9 @@ class HouseService extends Service {
     })
     if (!addInfoInstance) {
       const { HOUSE_NOT_FOUND } = this.config.errors
-      ctx.helper.$fail(HOUSE_NOT_FOUND.code, HOUSE_NOT_FOUND.msg)
-      return
+      const err = new Error()
+      Object.assign(err, HOUSE_NOT_FOUND)
+      throw err
     }
     const info = await ctx.model.House.update(addInfo, {
       where: {
@@ -96,8 +97,9 @@ class HouseService extends Service {
     })
     if (!house) {
       const { HOUSE_NOT_FOUND } = this.config.errors
-      ctx.helper.$fail(HOUSE_NOT_FOUND.code, HOUSE_NOT_FOUND.msg)
-      return
+      const err = new Error()
+      Object.assign(err, HOUSE_NOT_FOUND)
+      throw err
     }
     await house.destroy()
     ctx.helper.$success()
