@@ -1,95 +1,94 @@
-"use strict";
+'use strict';
 
 /**
  * @param {Egg.Application} app - egg application
  */
-module.exports = (app) => {
+module.exports = app => {
   const { router, controller, middleware } = app;
   const auth_token_check = middleware.checkAuthToken({}, app);
-  router.post("/api/signup", controller.api.users.signup);
-  router.post("/api/login", controller.api.users.login);
-  router.post("/api/logout", auth_token_check, controller.api.users.logout);
-  router.post("/api/update", auth_token_check, controller.api.users.updatePwd);
-  router.get("/api/userList", auth_token_check, controller.api.users.userList);
+  router.post('/api/signup', controller.api.users.signup);
+  router.post('/api/login', controller.api.users.login);
+  router.post('/api/logout', auth_token_check, controller.api.users.logout);
+  router.post('/api/update', auth_token_check, controller.api.users.updatePwd);
+  router.get('/api/userList', auth_token_check, controller.api.users.userList);
   router.post(
-    "/api/userDelete",
+    '/api/userDelete',
     auth_token_check,
     controller.api.users.userDelete
   );
   // 房源信息
-  router.post("/api/houseAdd", auth_token_check, controller.api.house.houseAdd);
+  router.post('/api/houseAdd', auth_token_check, controller.api.house.houseAdd);
   router.post(
-    "/api/houseList",
+    '/api/houseList',
     auth_token_check,
     controller.api.house.houseList
   );
   router.post(
-    "/api/houseUpdate",
+    '/api/houseUpdate',
     auth_token_check,
     controller.api.house.houseUpdate
   );
   router.post(
-    "/api/houseDelete",
+    '/api/houseDelete',
     auth_token_check,
     controller.api.house.houseDelete
   );
-  router.post("/api/uploadImgs", controller.api.uploader.uploadImgs);
+  router.post('/api/uploadImgs', controller.api.uploader.uploadImgs);
 
   // 添加租户
   router.post(
-    "/api/tenantAdd",
+    '/api/tenantAdd',
     auth_token_check,
     controller.api.tenant.tenantAdd
   );
 
   // 删除租户信息
   router.post(
-    "/api/tenantDelete",
+    '/api/tenantDelete',
     auth_token_check,
     controller.api.tenant.tenantDelete
   );
 
   // 更新租户信息
   router.post(
-    "/api/tenantUpdate",
+    '/api/tenantUpdate',
     auth_token_check,
     controller.api.tenant.tenantUpdate
   );
 
   // 查询租户列表
   router.post(
-    "/api/tenantList",
+    '/api/tenantList',
     auth_token_check,
     controller.api.tenant.tenantList
   );
 
   // 续租按钮1
   router.post(
-    "/api/addDays",
+    '/api/addDays',
     auth_token_check,
     controller.api.tenant.tenantRent
   );
   // =================小程序接口start===================
   router.post(
-    "/api/wxAdd",
+    '/api/wxAdd',
     auth_token_check,
     controller.api.wxhouse.wxAdd
   );
   router.post(
-    "/api/wxUpdate",
+    '/api/wxUpdate',
     auth_token_check,
     controller.api.wxhouse.wxUpdate
   );
   router.post(
-    "/api/wxDelete",
+    '/api/wxDelete',
     auth_token_check,
     controller.api.wxhouse.wxDelete
   );
   router.post(
-    "/api/wxList",
-    auth_token_check,
+    '/api/wxList',
     controller.api.wxhouse.wxList
   );
-// =================小程序接口end===================
+  // =================小程序接口end===================
 
 };
