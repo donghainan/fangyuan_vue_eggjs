@@ -52,7 +52,7 @@ module.exports = appInfo => {
     //   port: 3306,
     //   database: 'fangyuan',
     //   username: 'root',
-    //   password: 'root123',
+    //   password: '',
     //   // timezone: '+8:00',
     // },
     // // 配置egg安全机制
