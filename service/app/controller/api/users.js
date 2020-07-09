@@ -11,7 +11,7 @@ const rule = {
     required: true,
   },
   password: {
-    type: "password",
+    type: "string",
     required: false,
   },
   type: {
@@ -38,7 +38,7 @@ class Users extends Controller {
       },
       ctx.request.body
     );
-    const { username, password, phone } = ctx.request.body;
+    const { username, password } = ctx.request.body;
     const pwdHash = ctx.helper.cryptPwd(password);
     const userInstance = await ctx.service.users.findOne(username);
     if (!userInstance) {
