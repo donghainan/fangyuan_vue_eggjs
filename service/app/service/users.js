@@ -36,8 +36,9 @@ class Users extends Service {
     })
     if (!user) {
       const { USER_NOT_FOUND } = this.config.errors
-      ctx.helper.$fail(USER_NOT_FOUND.code, USER_NOT_FOUND.msg)
-      return
+      const err = new Error()
+      Object.assign(err, USER_NOT_FOUND)
+      throw err
     }
     await user.destroy()
     ctx.helper.$success()
