@@ -3,6 +3,20 @@
 const Service = require('egg').Service;
 
 class Wxhouse extends Service {
+  // 根据id查找
+  async findById(params) {
+    const { ctx, app } = this
+    const wxhouse = await ctx.model.Wxhouse.findOne({
+      where: { id: params.id },
+    });
+    if (!wxhouse) {
+      const { WX_HOUSE_NOTFOUND } = app.config.errors;
+      const err = new Error();
+      Object.assign(err, WX_HOUSE_NOTFOUND);
+      throw err;
+    }
+    ctx.helper.$success(wxhouse)
+  }
   // 创建
   async findOrCreate(params) {
     const { ctx, app } = this;

@@ -1,5 +1,7 @@
 'use strict';
 
+const await = require('await-stream-ready/lib/await');
+
 const Controller = require('egg').Controller;
 const rules = {
   id: { type: 'number', required: true },
@@ -150,6 +152,15 @@ class Wxhouse extends Controller {
     const queryParams = ctx.request.body || {};
     const houeInstance = await ctx.service.wxhouse.list(queryParams);
     ctx.helper.$success(houeInstance);
+  }
+  async wxDetail(){
+    const { ctx } = this;
+    ctx.validate({
+      id: rules.id
+    },ctx.request.body)
+
+    const queryParams = ctx.request.body || {}
+    await ctx.service.wxhouse.findById(queryParams)
   }
 }
 

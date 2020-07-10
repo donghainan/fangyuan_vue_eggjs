@@ -89,6 +89,10 @@ module.exports = app => {
     '/api/wxList',
     controller.api.wxhouse.wxList
   );
+  router.post(
+    '/api/wxList/detail',
+    controller.api.wxhouse.wxDetail
+  );
   // =================小程序接口end===================
 
 };
