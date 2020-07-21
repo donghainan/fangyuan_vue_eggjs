@@ -133,7 +133,7 @@ class Wxhouse extends Service {
     }
     const query = {
       where,
-      order: [[ 'houseRecommend', 'desc' ]],
+      order: [[ 'status', 'desc' ],[ 'houseRecommend', 'desc' ]],
       limit: size,
       offset: (page - 1) * size,
     };
