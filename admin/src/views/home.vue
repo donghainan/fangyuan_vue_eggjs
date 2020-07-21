@@ -49,6 +49,7 @@ export default {
     };
   },
   created() {
+    this.userName = localStorage.getItem("userName");
     // 三级用户仅能看到三级用户模块
     if (this.Accesslevel && this.Accesslevel === "2") {
       this.route = this.route.filter(v => v.Accesslevel === this.Accesslevel);
@@ -56,7 +57,6 @@ export default {
      let path =  this.route.find(v=>v.Accesslevel === '2').path || '/login'
       this.$router.push(path)
     }
-    this.userName = localStorage.getItem("userName");
   },
   methods: {
     loginOut() {

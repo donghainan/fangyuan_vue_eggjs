@@ -72,10 +72,10 @@
           <el-input v-model="row.username" autocomplete="off" :disabled="mode === 'edit'"></el-input>
         </el-form-item>
         <el-form-item :label="mode == 'add' ? '密码 :' : '新密码 :'" prop="password">
-          <el-input v-model="row.password" autocomplete="off"></el-input>
+          <el-input v-model="row.password" autocomplete="off" placeholder="请输入密码"></el-input>
         </el-form-item>
-         <el-form-item label="手机号 :" prop="phone">
-          <el-input v-model="row.phone"  placeholder="请输入电话号码"></el-input>
+        <el-form-item label="手机号 :" prop="phone">
+          <el-input v-model="row.phone" placeholder="请输入电话号码"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -92,13 +92,14 @@ export default {
     return {
       // 用户等级
       Accesslevel: localStorage.getItem("Accesslevel"),
-      username: localStorage.getItem("userName"),
+      // username: localStorage.getItem("userName"),
       accountList: [],
       mode: "",
       row: {
         type: 1,
         username: "",
-        password: ""
+        password: "",
+        phone: ""
       },
       dialogFormVisible: false,
       rules: {
@@ -120,6 +121,13 @@ export default {
             min: 5,
             max: 20,
             message: "密码最少5位,最多20位",
+            trigger: "blur"
+          }
+        ],
+        phone: [
+          {
+            pattern: /^1[2-9][0-9]{9}$/,
+            message: "手机号格式错误",
             trigger: "blur"
           }
         ]
@@ -144,6 +152,7 @@ export default {
       this.mode = "edit";
       this.row.username = row.username;
       this.row.type = row.type;
+      this.row.phone = row.phone;
       this.dialogFormVisible = true;
     },
     // 注册账号
@@ -152,7 +161,8 @@ export default {
       this.row = {
         type: 1,
         username: "",
-        password: ""
+        password: "",
+        phone: ""
       };
       this.dialogFormVisible = true;
     },
@@ -164,9 +174,9 @@ export default {
         type: "warning"
       })
         .then(() => {
-          let { id, type, username, delFlag } = row;
+          let { id, type, username, delFlag, phone } = row;
           delFlag = row.delFlag == 0 ? 1 : 0;
-          Http.updateAcc({ id, type, username, delFlag }).then(res => {
+          Http.updateAcc({ id, type, username, delFlag, phone }).then(res => {
             if (res.data && res.data.code == 0) {
               this.$message({
                 type: "success",
@@ -245,7 +255,8 @@ export default {
       this.row = {
         type: 1,
         username: "",
-        password: ""
+        password: "",
+        phone: ""
       };
       this.$refs.info.clearValidate();
     },

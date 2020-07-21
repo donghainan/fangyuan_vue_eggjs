@@ -378,7 +378,7 @@ export default {
   data() {
     return {
       Accesslevel: localStorage.getItem("Accesslevel"), // 用户等级
-      action: Http.upload(), // 上传图片
+      action: Http.upload(), // 上传图片地址
       headers: { Authorization: localStorage.getItem("auth_token") },
       spanSize: 4,
       searchForm: {

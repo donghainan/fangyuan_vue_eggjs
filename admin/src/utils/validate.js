@@ -66,9 +66,62 @@ export const tenantsValidate = {
 }
 // 小程序房源效验
 export const mixiSequenceValidate = {
-    name: [{
+    title: [{
         required: true,
         message: "请输入房源标题",
         trigger: "blur"
     }],
+    houseRecommend: [{
+        required: true,
+        message: "请输入推荐等级",
+        trigger: "blur"
+    }, {
+        pattern: /^[1-9]+|0$/,
+        message: "请输入正整数",
+        trigger: "blur"
+    }],
+    rentPrice: [{
+        required: true,
+        message: "请输入租价",
+        trigger: "blur"
+    }],
+    agentPhone: [{
+        required: true,
+        message: "请输入租价",
+        trigger: "blur"
+    }, {
+        pattern: /^1[2-9][0-9]{9}$/,
+        message: "手机号格式错误",
+        trigger: "blur"
+    }],
+    orientation: [{
+        required: true,
+        message: "请选择朝向",
+        trigger: "change"
+    }],
+    location: [{
+        required: true,
+        message: "请选择位置",
+        trigger: "change"
+    }],
+    rentMode: [{
+        required: true,
+        message: "请选择承租类型",
+        trigger: "change"
+    }],
+    rentPeriod: [{
+        required: true,
+        message: "请选择承租周期",
+        trigger: "change"
+    }],
+    status: [{
+        required: true,
+        message: "请选择是否上架",
+        trigger: "change"
+    }],
+    houseImgs: [{
+        required: true,
+        message: "请上传图片",
+        trigger: "change"
+    }]
 }

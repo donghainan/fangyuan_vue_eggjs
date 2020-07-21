@@ -4,19 +4,19 @@
       <el-button type="primary" size="small" @click="addTenants">新增租客</el-button>
     </div>
     <el-table :data="tentanList" style="width: 100%" stripe border>
-      <el-table-column label="序号" type="index" :index="indexMethod" width="70" align="center"></el-table-column>
-      <el-table-column prop="room_name" label="房间信息" align="center" width="200"></el-table-column>
+      <el-table-column label="序号" type="index" :index="indexMethod" width="50px" align="center"></el-table-column>
+      <el-table-column prop="room_name" label="房间信息" align="center" width="160px"></el-table-column>
       <el-table-column prop="user_name" label="承租人" align="center"></el-table-column>
-      <el-table-column prop="phone" label="联系方式" align="center"></el-table-column>
+      <el-table-column prop="phone" label="联系方式" align="center" width="120px"></el-table-column>
       <el-table-column prop="money" label="租金" align="center"></el-table-column>
       <el-table-column prop="deposit" label="押金" align="center"></el-table-column>
       <el-table-column prop="pay_type" label="支付方式" align="center"></el-table-column>
-      <el-table-column prop="startTime" label="起租日期" align="center">
+      <el-table-column prop="startTime" label="起租日期" align="center" width="110px">
         <template slot-scope="scope">
           <span>{{scope.row.startTime | formatDate('YYYY-MM-DD') }}</span>
         </template>
       </el-table-column>
-      <el-table-column prop="stopTime" label="到租日期" align="center">
+      <el-table-column prop="stopTime" label="到租日期" align="center" width="110px">
         <template slot-scope="scope">
           <span>{{scope.row.stopTime | formatDate('YYYY-MM-DD') }}</span>
         </template>

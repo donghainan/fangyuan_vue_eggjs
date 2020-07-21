@@ -2,6 +2,7 @@ import router from '../router'
 const Message = ELEMENT.Message
 
 
+
 axios.defaults.timeout = 15000
 axios.defaults.withCredentials = true
 axios.defaults.responseType = 'json'
@@ -29,7 +30,7 @@ axios.interceptors.response.use(
     if (response.data.code === 0 || response.data.code === 200) {
       return response
     } else {
-      if (response.data.code === 2001||response.data.code === 1001) {
+      if (response.data.code === 2001 || response.data.code === 1001) {
         localStorage.removeItem('auth_token') //过期
         localStorage.removeItem('userName') //过期
         localStorage.removeItem('Accesslevel') //过期
@@ -64,8 +65,7 @@ axios.interceptors.response.use(
 export default class Http {
   static send(config) {
     const currentUrl = encodeURIComponent(window.location.href)
-    const configs = Object.assign(
-      {
+    const configs = Object.assign({
         headers: {
           currentUrl: currentUrl,
           'L-A-Platform': 'erp-web', //后端日志埋点渠道
