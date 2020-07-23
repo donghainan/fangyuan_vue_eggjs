@@ -207,25 +207,25 @@ export default {
 			let location = this.tenantsForm.location
 			let floorNo
 			switch (location) {
-				case '爱博一村':
+				case '1':
 					floorNo = 93
 					break
-				case '爱博二村':
+				case '2':
 					floorNo = 156
 					break
-				case '爱博三村':
+				case '3':
 					floorNo = 69
 					break
-				case '爱博四村':
+				case '4':
 					floorNo = 48
 					break
-				case '爱博五村':
+				case '5':
 					floorNo = 88
 					break
-				case '爱博六村':
+				case '6':
 					floorNo = 57
 					break
-				case '爱博七村':
+				case '7':
 					floorNo = 55
 					break
 				default:
